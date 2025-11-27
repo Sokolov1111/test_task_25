@@ -1,16 +1,70 @@
-# test_task_25
+# 🚀 Flutter Project - Test Task 27.11.2025
 
-A new Flutter project.
+---
 
-## Getting Started
+## 📌 Архитектура проекта
 
-This project is a starting point for a Flutter application.
+### **Presentation (UI)**
+Расположение:  `lib/ui/`.  
+Каждый экран в своей папке: `onboarding/`, `paywall/`, `home/`.
 
-A few resources to get you started if this is your first Flutter project:
+### **State Management — Cubit (flutter_bloc)**
+Используется Cubit (в данном случае подойдет, как упрощенная версия BLoC):
+- хранит текущий статус подписки,
+- управляет загрузкой, сохранением и сбросом плана,
+- обновляет UI при изменении состояния.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Файл:  
+Расположение: `lib/logic/subscription/`, `lib/logic/paywall/`
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### **Services**
+Вся работа с локальным хранилищем вынесена в сервис.
+
+Методы сервиса:
+- `load()` — возвращает текущий план,
+- `save(plan)` — сохраняет выбранный план,
+- `reset()` — очищает план (для повтороного выбора).
+
+Расположение:  
+`lib/services/subscription_service.dart`
+
+## 📁 Структура проекта
+
+lib/
+│
+├── logic/
+│ └── subscription/
+│     └── subscription_cubit.dart
+  └── paywall/
+│     └── paywall_cubit.dart
+│
+├── services/
+│ └── subscription_service.dart 
+│
+├── ui/
+│ ├── onboarding/
+│ │ └── onboarding_screen.dart 
+│ │
+│ ├── paywall/
+│ │ └── paywall_screen.dart 
+│ │
+│ └── home/
+│ └── home_screen.dart
+└── app.dart
+└── main.dart 
+
+## 🚀 Возможные улучшения
+
+### **1. Улучшение архитектуры**
+- Разделить `data / domain / presentation`
+- Добавить состояния и перейти на BLoC
+
+### **2. Улучшение UI**
+- Анимации переходов
+- Красивые карточки тарифов
+- Адаптация под разные экраны'
+- Созданием кастомных виджетов
+
+### **3. Тесты**
+- Unit-тесты 
+- Widget-тесты
